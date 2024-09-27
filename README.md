@@ -81,3 +81,119 @@ Here's a detailed feature comparison table outlining the differences between **I
 Your
 
  choice will depend on whether your focus is on **government services** (ID.me or Alabama Medicaid IDP) or **scalable consumer applications** (Azure AD B2C).
+
+
+
+
+ ### Use Case with Chicklets for Each IDP (ID.me, Alabama Medicaid IDP, Azure AD B2C)
+
+Chicklets are commonly used as clickable buttons representing different identity providers (IDPs) on login pages. Below are specific use cases and chicklet examples for each IDP—**ID.me**, **Alabama Medicaid IDP**, and **Azure AD B2C**—illustrating how they might be integrated into different applications.
+
+---
+
+### **Use Case 1: ID.me - U.S. Government Service Portal**
+
+#### **Scenario:**
+A U.S. citizen logs into the **Department of Veterans Affairs (VA)** website to access healthcare benefits. The VA website provides a **Login with ID.me** option for secure identity verification.
+
+#### **Chicklet Example:**
+
+```html
+<a href="https://api.id.me/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=openid email profile">
+    <img src="https://www.id.me/assets/images/buttons/IDme-button.png" alt="Login with ID.me" />
+</a>
+```
+
+#### **Workflow:**
+1. **User Clicks Chicklet**: User clicks the "Login with ID.me" chicklet on the VA website.
+2. **Redirect to ID.me**: The user is redirected to ID.me for identity verification (OAuth 2.0 flow).
+3. **Identity Verification**: ID.me prompts the user to log in, upload ID documents (driver’s license, passport), and complete biometric verification (selfie or face recognition).
+4. **Token Exchange**: ID.me sends an authorization code back to the VA website.
+5. **Access Granted**: The VA website exchanges the code for an access token, verifies the user’s identity, and grants access to healthcare benefits.
+
+#### **Chicklet UI:**
+The ID.me chicklet is commonly seen as a button with the **ID.me logo**:
+
+![ID.me Chicklet](https://www.id.me/assets/images/buttons/IDme-button.png)
+
+---
+
+### **Use Case 2: Alabama Medicaid IDP - Medicaid Benefits Portal**
+
+#### **Scenario:**
+An Alabama resident accesses the **Alabama Medicaid Portal** to verify their eligibility for Medicaid benefits. The portal uses the Alabama Medicaid IDP for secure identity verification.
+
+#### **Chicklet Example:**
+
+```html
+<a href="https://medicaid.alabama.gov/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=openid email profile">
+    <img src="https://medicaid.alabama.gov/assets/images/buttons/Alabama-Medicaid-Login.png" alt="Login with Alabama Medicaid IDP" />
+</a>
+```
+
+#### **Workflow:**
+1. **User Clicks Chicklet**: The user clicks the “Login with Alabama Medicaid IDP” chicklet on the portal.
+2. **Redirect to Alabama Medicaid IDP**: The user is redirected to the Alabama Medicaid IDP authentication page.
+3. **Identity Proofing**: The user uploads their state-issued ID, performs biometric verification (selfie), and may answer additional identity verification questions.
+4. **Token Exchange**: The Alabama Medicaid IDP sends an authorization code back to the Medicaid portal.
+5. **Access to Benefits**: The portal exchanges the code for a token, verifies the user, and grants access to Medicaid benefits.
+
+#### **Chicklet UI:**
+This chicklet can feature **Alabama Medicaid branding**:
+
+![Alabama Medicaid Chicklet](https://example.com/path-to-alabama-medicaid-chicklet.png)  
+*(Note: A custom-designed chicklet featuring the Alabama Medicaid logo and branding would be used here.)*
+
+---
+
+### **Use Case 3: Azure AD B2C - E-commerce Website Login**
+
+#### **Scenario:**
+A global e-commerce platform allows users to sign up and log in using **Azure AD B2C** with various identity providers, such as Google, Facebook, and Microsoft. Azure AD B2C manages the authentication flows.
+
+#### **Chicklet Example:**
+
+```html
+<a href="https://login.your-app.com/oauth2/v2.0/authorize?p=b2c_1_signupsignin&client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=id_token&scope=openid profile email">
+    <img src="https://your-app.com/images/login-with-azure-ad-b2c.png" alt="Login with Azure AD B2C" />
+</a>
+```
+
+#### **Workflow:**
+1. **User Clicks Chicklet**: The user clicks the "Login with Azure AD B2C" chicklet on the e-commerce site.
+2. **Redirect to Azure AD B2C**: The user is redirected to the Azure AD B2C authentication page.
+3. **Choose Identity Provider**: The user selects their preferred identity provider (Google, Facebook, Microsoft, etc.).
+4. **Authentication**: The user logs in via their chosen provider (e.g., Google). Azure AD B2C handles the token exchange.
+5. **Access Granted**: The e-commerce site receives an authentication token from Azure AD B2C and grants access to the user.
+
+#### **Chicklet UI:**
+Azure AD B2C can present **multiple identity provider options** (chicklets for Google, Facebook, etc.):
+
+**Example:**
+
+```html
+<a href="https://login.microsoftonline.com/oauth2/v2.0/authorize?p=b2c_1_google&client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=id_token&scope=openid profile email">
+    <img src="https://your-app.com/images/google-login.png" alt="Login with Google" />
+</a>
+
+<a href="https://login.microsoftonline.com/oauth2/v2.0/authorize?p=b2c_1_facebook&client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=id_token&scope=openid profile email">
+    <img src="https://your-app.com/images/facebook-login.png" alt="Login with Facebook" />
+</a>
+```
+
+Each identity provider, such as Google or Facebook, would have its own chicklet:
+
+![Google Login Chicklet](https://your-app.com/images/google-login.png)  
+![Facebook Login Chicklet](https://your-app.com/images/facebook-login.png)
+
+---
+
+### Conclusion
+
+- **ID.me**: Ideal for government portals needing secure, **compliant identity verification**. The chicklet for ID.me is usually placed on **U.S. government websites** that require robust identity proofing (e.g., VA, IRS).
+  
+- **Alabama Medicaid IDP**: Designed for **state-specific services**, such as Alabama Medicaid. The chicklet is used in secure portals where **citizens verify identity** to access healthcare benefits.
+
+- **Azure AD B2C**: Highly flexible and customizable for **global businesses**. E-commerce platforms or consumer-facing apps can offer multiple login options, such as **Google, Facebook, or Microsoft accounts**, using Azure AD B2C's chicklets.
+
+Each IDP has its unique set of use cases, and chicklets provide an easy-to-use, recognizable interface for users to authenticate via their preferred method.

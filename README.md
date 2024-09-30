@@ -277,6 +277,37 @@ flowchart TD
     B5 --> M4
 ```
 
+Here’s a detailed **Mermaid diagram** Option 2 for your described process:
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#f6ab05', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#d3d3d3'}}}%%
+    graph TD
+    subgraph User
+    U1[Click on Link] --> U2[Login to Application]
+    U2 -->|Fails| U3[Login to MES Portal]
+    U3 -->|Federated Login Fails| U4[Notify B2C Admin]
+    end
+
+    subgraph MES Portal
+    U3 --> M1[Check Application ID]
+    M1 -->|Invalid ID| M2[Block Access]
+    end
+
+    subgraph B2C Admin
+    U4 --> B1[Update B2C Records]
+    B1 --> B2[Verify Application ID]
+    B2 -->|Policy Update| B3[Mandate Password Change]
+    B3 --> B4[Update User Records]
+    end
+
+    subgraph B2C
+    B2 --> C1[Check for Ad hoc Signup]
+    C1 --> C2[Allow Coexistence of IDs]
+    C2 --> C3[Grant Access after Transition Period]
+    end
+
+```
+
 
 This diagram depicts the key components of user interaction with Azure B2C for authentication and authorization, starting from link click to potential failure in federated login processes.
 

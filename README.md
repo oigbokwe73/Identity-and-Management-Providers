@@ -3,49 +3,6 @@ Here's a detailed feature comparison table outlining the differences between **I
 
 ---
 
-'''
-While ($true) {
-    $minutes = ""
-
-    While ($minutes -eq "") {
-        $minutes = Read-Host "(minutes)"
-        If ($minutes -match "^\d+$") {
-            #Write-Host "number is good"
-        }
-        Else {
-            Write-Host "The input you provided is not valid. Please try again."
-            $minutes = ""
-        }
-    }
-
-    $myshell = New-Object -com "Wscript.Shell"
-
-    $i = 0
-
-    While ($i -lt $minutes -xor $minutes -eq 0) {
-        If ($minutes -eq "0") {
-            $minutes = -1
-            $i = -2
-            Write-Host ""
-        }
-        If ($minutes -gt "0") {
-            $minutesRemaining = $minutes - $i
-            If ($minutesRemaining -eq $minutes) {
-                Write-Host ""
-            }
-            If ($minutesRemaining -eq 1) {
-                Write-Host ""
-            }
-            If ($minutesRemaining -gt 1) {
-                Write-Host ""
-            }
-            $i++
-        }
-        Start-Sleep -Seconds 60
-        $myshell.sendkeys("{NUMLOCK}{NUMLOCK}")
-    }
-} #End of While true loop
-'''
 
 ### **Feature Comparison: ID.me vs. Alabama Medicaid IDP vs. Azure AD B2C**
 
@@ -246,25 +203,80 @@ Each IDP has its unique set of use cases, and chicklets provide an easy-to-use, 
 
 
 
-Here’s a detailed **Mermaid diagram** for your described process:
+Here’s a detailed **Mermaid diagram** Option 1 for your described process:
 
 ```mermaid
-graph TD
-  A[User clicks on a link] --> B[Challenge user for app credentials]
-  B --> C[Create record in B2C]
-  C --> D[Store Account ID in B2C record]
-  D --> E[Limit chicklets visible based on B2C record]
-  E --> F[User logs into MES Portal with IdP credentials]
-  F --> G[B2C acts as Identity Manager, delegating auth to IdP]
-  G --> H[User ID from MES app challenge stored in B2C]
-  H --> I[B2C performs lookup of ID on MES app invocation]
-  I --> J[B2C passes user ID in token for MES app authentication/authorization]
-  J --> K[Login fails if app ID is invalid]
-  K --> L[Login fails during federated login process]
-  J --> M[Passwords may change at different intervals in IdPs]
-  M --> N[No maintenance required in B2C]
-  L --> O[Links established, no bulk migration and linking available]
+---
+config:
+  layout: elk
+  theme: default
+---
+flowchart TB
+ subgraph User["User"]
+        U1["User clicks link to access MES Portal"]
+        U2["Challenged for app credentials"]
+        U3["Logs in and provides credentials"]
+  end
+ subgraph Azure_B2C["Azure_B2C"]
+        B1["Check for existing user in B2C"]
+        B2["Create new user if not found"]
+        B3["Capture MFA preferences"]
+        B4["Store user ID and MFA details in B2C"]
+        B5["Lookup User ID when MES App invoked"]
+        B6["Pass User ID in token for MES App authentication"]
+  end
+ subgraph IdP["IdP"]
+        I1["Authenticate user using IdP credentials"]
+        I2["Delegate authentication to IdP"]
+  end
+ subgraph MES_Application["MES_Application"]
+        M1["Verify token from B2C"]
+      end
+    U1 --> U2
+    U2 --> U3
+    U3 --> I1
+    I1 --> I2
+    I2 --> B1
+    B1 -- User exists? --> B3
+    B1 -- New user? --> B2
+    B2 --> B3
+    B3 --> B4
+    B4 --> M1
+    B5 --> M1
+    B6 --> M1
 ```
+
+Here’s a detailed **Mermaid diagram** Option 2 for your described process:
+
+```mermaid
+flowchart TD
+    subgraph MedicaidIdP [Medicaid IdP]
+        A1[Sync User Info & Groups to B2C] --> A2[Password Changes Managed Here]
+    end
+    subgraph B2C [Azure B2C]
+        B1[Sync with MedicaidIdP] --> B2[Create New B2C Account with Medicaid Info]
+        B2 --> B3[Link Medicaid.ID with MES App User Account]
+        B3 --> B4[Store B2C User ID with MES Account]
+        B4 --> B5[Provide Token with User ID on App Click]
+        B6[Inactivate Account via Admin Notification] --> B5
+    end
+    subgraph MESApp [MES Application]
+        M1[User Enters Medicaid.ID] --> M2[Challenge to Establish MFA]
+        M2 --> M3[Display Appropriate Chicklets Based on B2C Account]
+        M3 --> M4[Click on App to Get User ID Token from B2C]
+        M4 --> M5[Access Application Based on User Token]
+    end
+    subgraph User [User]
+        U1[Enter Medicaid.ID to Login to MES Portal] --> U2[Complete MFA Setup During First Login]
+        U2 --> U3[Access MES Portal Applications]
+    end
+    User --> MESApp
+    MESApp --> B2C
+    B2C --> MedicaidIdP
+    MESApp --> B2C --> MESApp
+    B5 --> M4
+```
+
 
 This diagram depicts the key components of user interaction with Azure B2C for authentication and authorization, starting from link click to potential failure in federated login processes.
 

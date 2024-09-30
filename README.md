@@ -197,3 +197,31 @@ Each identity provider, such as Google or Facebook, would have its own chicklet:
 - **Azure AD B2C**: Highly flexible and customizable for **global businesses**. E-commerce platforms or consumer-facing apps can offer multiple login options, such as **Google, Facebook, or Microsoft accounts**, using Azure AD B2C's chicklets.
 
 Each IDP has its unique set of use cases, and chicklets provide an easy-to-use, recognizable interface for users to authenticate via their preferred method.
+
+
+
+
+Here’s a detailed **Mermaid diagram** for your described process:
+
+```mermaid
+graph TD
+  A[User Clicks on Link] --> B[Challenge for App Credentials]
+  B --> C[Create B2C Record]
+  C --> D[Store Account ID in B2C Record]
+  D --> E[Limit Chicklets Visible to User]
+  E --> F[User Logs into MES Portal]
+  F --> G[Leverage Existing Credentials from IdP]
+  G --> H[B2C as Identity Manager Delegates Auth to IdP]
+  H --> I[User ID Persisted in B2C Record]
+  I --> J[B2C Looks Up User ID on MES Application Invoke]
+  J --> K[Pass User ID as Token to MES Application]
+  K --> L[Authenticate and Authorize User]
+  L --> M[Login Fails If App ID Invalid]
+  M --> N[Login Fails in Federated Login Process]
+  N --> O[No B2C Maintenance but IdP Passwords Change at Intervals]
+  O --> P[Links Established, No Bulk Migration or Linking Available]
+```
+
+This diagram depicts the key components of user interaction with Azure B2C for authentication and authorization, starting from link click to potential failure in federated login processes.
+
+Would you like further refinements or additional details?

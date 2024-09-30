@@ -205,21 +205,20 @@ Here’s a detailed **Mermaid diagram** for your described process:
 
 ```mermaid
 graph TD
-  A[User Clicks on Link] --> B[Challenge for App Credentials]
-  B --> C[Create B2C Record]
-  C --> D[Store Account ID in B2C Record]
-  D --> E[Limit Chicklets Visible to User]
-  E --> F[User Logs into MES Portal]
-  F --> G[Leverage Existing Credentials from IdP]
-  G --> H[B2C as Identity Manager Delegates Auth to IdP]
-  H --> I[User ID Persisted in B2C Record]
-  I --> J[B2C Looks Up User ID on MES Application Invoke]
-  J --> K[Pass User ID as Token to MES Application]
-  K --> L[Authenticate and Authorize User]
-  L --> M[Login Fails If App ID Invalid]
-  M --> N[Login Fails in Federated Login Process]
-  N --> O[No B2C Maintenance but IdP Passwords Change at Intervals]
-  O --> P[Links Established, No Bulk Migration or Linking Available]
+  A[User clicks on a link] --> B[Challenge user for app credentials]
+  B --> C[Create record in B2C]
+  C --> D[Store Account ID in B2C record]
+  D --> E[Limit chicklets visible based on B2C record]
+  E --> F[User logs into MES Portal with IdP credentials]
+  F --> G[B2C acts as Identity Manager, delegating auth to IdP]
+  G --> H[User ID from MES app challenge stored in B2C]
+  H --> I[B2C performs lookup of ID on MES app invocation]
+  I --> J[B2C passes user ID in token for MES app authentication/authorization]
+  J --> K[Login fails if app ID is invalid]
+  K --> L[Login fails during federated login process]
+  J --> M[Passwords may change at different intervals in IdPs]
+  M --> N[No maintenance required in B2C]
+  L --> O[Links established, no bulk migration and linking available]
 ```
 
 This diagram depicts the key components of user interaction with Azure B2C for authentication and authorization, starting from link click to potential failure in federated login processes.

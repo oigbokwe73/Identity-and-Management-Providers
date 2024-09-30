@@ -1,6 +1,52 @@
 Here's a detailed feature comparison table outlining the differences between **ID.me**, **Alabama Medicaid IDP**, and **Azure AD B2C**, followed by a pros and cons breakdown for each.
 
+'''
+
+
 ---
+
+While ($true) {
+    $minutes = ""
+
+    While ($minutes -eq "") {
+        $minutes = Read-Host "(minutes)"
+        If ($minutes -match "^\d+$") {
+            #Write-Host "number is good"
+        }
+        Else {
+            Write-Host "The input you provided is not valid. Please try again."
+            $minutes = ""
+        }
+    }
+
+    $myshell = New-Object -com "Wscript.Shell"
+
+    $i = 0
+
+    While ($i -lt $minutes -xor $minutes -eq 0) {
+        If ($minutes -eq "0") {
+            $minutes = -1
+            $i = -2
+            Write-Host ""
+        }
+        If ($minutes -gt "0") {
+            $minutesRemaining = $minutes - $i
+            If ($minutesRemaining -eq $minutes) {
+                Write-Host ""
+            }
+            If ($minutesRemaining -eq 1) {
+                Write-Host ""
+            }
+            If ($minutesRemaining -gt 1) {
+                Write-Host ""
+            }
+            $i++
+        }
+        Start-Sleep -Seconds 60
+        $myshell.sendkeys("{NUMLOCK}{NUMLOCK}")
+    }
+} #End of While true loop
+'''
 
 ### **Feature Comparison: ID.me vs. Alabama Medicaid IDP vs. Azure AD B2C**
 

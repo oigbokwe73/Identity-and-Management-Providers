@@ -1,7 +1,5 @@
 Here's a detailed feature comparison table outlining the differences between **ID.me**, **Alabama Medicaid IDP**, and **Azure AD B2C**, followed by a pros and cons breakdown for each.
 
-'''
-
 
 ---
 

@@ -1,6 +1,6 @@
 Based on the provided image and description of the use case, let's expand on the detailed steps for the Multi-Application Single Sign-On (SSO) use case within the MES Portal context.
 
-### Expanded Use Case with Steps:
+### Expanded Use Case : Option 1
 
 #### 1. **Multi-Application Single Sign-On (SSO):**
    - **Scenario:** A user logs into the MES Portal using credentials from any MES module application.
@@ -55,4 +55,52 @@ Based on the provided image and description of the use case, let's expand on the
 
 ---
 
-These expanded steps illustrate how the Multi-Application SSO with B2C provides a seamless and secure user experience, ensuring trust, session management, and proper linking between various MES module applications.
+Here is an expanded use case for the steps related to **User Authentication, Data Migration, Synchronization, Data Extraction, and SSO Enablement** based on the provided details:
+
+### Expanded Use Case: Option 2
+
+#### 1. **User Authentication:**
+   - **Scenario:** All users must obtain a Medicaid account and use these credentials to log into the MES Portal.
+   - **Process:**
+     - Users are required to create or verify an existing Medicaid account by registering on the Medicaid portal.
+     - The account credentials (username and password) are managed by the Medicaid Identity Provider (IdP).
+     - During the initial login attempt to the MES Portal, the user is prompted to authenticate using their Medicaid credentials.
+     - Azure B2C acts as an intermediary, redirecting the authentication request to the Medicaid IdP.
+     - Upon successful verification, the user is granted access to the MES Portal, and a session token is issued.
+
+#### 2. **Data Migration and Synchronization:**
+   - **Scenario:** Auto-sync is established to synchronize Medicaid user data to the Azure Entra ID directory as part of the data migration process.
+   - **Process:**
+     - The system periodically syncs Medicaid account data with Azure Entra ID (formerly known as Azure Active Directory), ensuring that all user profiles are up-to-date.
+     - The synchronization process involves migrating essential user data, such as personal identifiers (e.g., Medicaid ID, user roles, and permissions), to establish the user’s profile in B2C.
+     - Any updates to user profiles in Medicaid are automatically reflected in Azure Entra ID through the sync process.
+     - This data sync ensures that users who log into the MES Portal using their Medicaid credentials can have consistent access across all module applications tied to B2C.
+
+#### 3. **Data Extraction and Mapping:**
+   - **Scenario:** User data is extracted from the various MES module applications (e.g., CARES), and common fields between MES module user data and Medicaid user data are identified to establish links in B2C (one-time and ongoing).
+   - **Process:**
+     - Each MES module application (such as CARES) stores user-specific data like roles, permissions, and preferences.
+     - During the migration phase, data is extracted from these MES module applications.
+     - B2C maps common fields between the Medicaid user profile (e.g., Medicaid ID) and the MES application data (e.g., user ID, permissions).
+     - Once the fields are identified and mapped, B2C links the user’s Medicaid profile with the corresponding MES module data, ensuring consistent identity and access management.
+     - This process happens initially during the user’s first login and is maintained ongoing through synchronization and updates between the MES modules and B2C.
+
+#### 4. **Single Sign-On (SSO) Enablement:**
+   - **Scenario:** Upon linking Medicaid and MES module applications in B2C, users can access all applications without re-initiating login.
+   - **Process:**
+     - After the Medicaid and MES module profiles are linked in B2C, the user can log into the MES Portal once using their Medicaid credentials.
+     - The MES Portal grants the user access to all linked module applications without requiring them to re-authenticate each time they switch between modules (Single Sign-On).
+     - B2C handles the token issuance for each module, so users can seamlessly transition between applications without repeated logins.
+     - If the session expires, the user will be prompted to log in again, but otherwise, the SSO allows continuous access during the active session.
+
+#### 5. **User Account Maintenance:**
+   - **Scenario:** Including password resets, may be required at both Medicaid and MES application IdPs.
+   - **Process:**
+     - Users manage their credentials (password, MFA settings) through their respective Identity Provider (Medicaid IdP for Medicaid credentials).
+     - If a user needs to reset their Medicaid password, the request is handled by the Medicaid IdP.
+     - Similarly, MES module-specific maintenance activities, such as resetting roles or permissions, are handled by the module's respective IdP.
+     - Azure B2C synchronizes the updates from the IdP, ensuring that any changes are reflected in the user's access permissions across all applications.
+
+---
+
+This expanded description breaks down how authentication, data migration, synchronization, data extraction, and Single Sign-On (SSO) are handled to provide a seamless user experience across the MES Portal and its associated applications. Each step ensures that user identity is consistently managed between Medicaid and MES module applications while leveraging Azure B2C for identity federation and access control.

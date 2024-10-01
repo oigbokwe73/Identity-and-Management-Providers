@@ -165,5 +165,53 @@ Here is the expanded use case based on the provided steps for **User Login, Auth
      - This ensures that users can maintain access to all their linked MES modules with a consistent set of credentials.
 
 ---
+Here is an expanded use case based on the provided steps related to **User Onboarding, Login, Authentication, Application Access, and Account Maintenance** using **Entra ID** for the MES Portal.
 
-This detailed expansion of the steps outlines how user authentication, provisioning, and access management are handled within the MES Portal using B2C and Medicaid IdP integration. It ensures that user identity is consistently managed across the MES ecosystem, providing a seamless Single Sign-On (SSO) experience for users while maintaining security and synchronization across multiple applications.
+### Expanded Use Case: Option 4
+
+#### 1. **User Onboarding:**
+   - **Scenario:** Users sign up with their information, including Multi-Factor Authentication (MFA) preferences. A unique user record is created and persisted in the new Entra ID tenant.
+   - **Process:**
+     - New users are directed to the MES Portal’s registration page, where they are required to provide essential details, including their name, contact information, and email address.
+     - During the onboarding process, users must configure their Multi-Factor Authentication (MFA) preferences. This could include options such as SMS verification, email, or app-based MFA (e.g., Microsoft Authenticator).
+     - Entra ID handles the collection of user data, and upon successful registration, a unique user record is created and persisted in the Entra ID tenant.
+     - The user record includes attributes such as the user’s MFA settings, roles, permissions, and any linked application accounts.
+     - Once the onboarding is complete, the user is ready to log in to the MES Portal using their new Entra ID account.
+
+#### 2. **User Login:**
+   - **Scenario:** All users should log in to the MES Portal using their new MES Portal Entra ID account.
+   - **Process:**
+     - Users navigate to the MES Portal login page and are prompted to enter their Entra ID credentials (username and password) created during onboarding.
+     - Entra ID manages the authentication flow, including verifying the user’s identity through their credentials.
+     - If the user has MFA configured, they are required to provide additional verification through their selected MFA method (e.g., receiving a code via SMS or using an authenticator app).
+     - Once the user’s identity is verified, Entra ID issues a token, granting access to the MES Portal dashboard.
+     - The login process ensures that the user’s identity is consistent across all modules linked to the MES Portal.
+
+#### 3. **User Authentication:**
+   - **Scenario:** Entra ID performs user authentication, and successful authentication grants access to the portal dashboard page.
+   - **Process:**
+     - Entra ID acts as the identity provider (IdP) for the MES Portal, handling all authentication requests.
+     - When the user submits their login information, Entra ID verifies the credentials against the stored user records.
+     - If the authentication is successful, the user is granted access to the MES Portal.
+     - The portal’s dashboard is dynamically populated with portlets corresponding to the user’s roles and access permissions.
+     - For added security, Entra ID tracks session information and ensures that any failed login attempts trigger security mechanisms, such as MFA or account lockout after repeated failed attempts.
+
+#### 4. **MES Module Application Access:**
+   - **Scenario:** All the MES module applications must use Entra ID as their IdP instead of their current configuration to allow the user to access the application. This, in turn, will enable a Single Identity maintained across all the module applications.
+   - **Process:**
+     - MES module applications (e.g., CARES) are configured to use Entra ID as their primary identity provider, ensuring all user authentication flows through Entra ID.
+     - When the user attempts to access a specific MES module from the portal, the module sends an authentication request to Entra ID, including the user’s session token or credentials.
+     - Entra ID validates the request, ensuring that the user has the necessary permissions to access the application.
+     - If the validation is successful, the MES module grants access without requiring the user to re-enter credentials (Single Sign-On).
+     - By using Entra ID for all MES modules, a single identity is maintained across the platform, allowing users to seamlessly switch between applications without multiple logins.
+
+#### 5. **User Account Maintenance:**
+   - **Scenario:** All account maintenance functions are owned by MES Portal Entra ID.
+   - **Process:**
+     - Entra ID manages all user account maintenance functions, including password resets, updating MFA settings, and changing user roles or permissions.
+     - Users can reset their passwords by initiating a request through the MES Portal or Entra ID self-service password reset flow.
+     - MFA configuration changes (e.g., adding or removing a verification method) are also handled by Entra ID, ensuring that users have control over their security settings.
+     - Any updates to the user’s account, such as role changes or revocation of access, are reflected across all MES modules since all applications rely on Entra ID for identity management.
+     - Regular synchronization between Entra ID and MES modules ensures that any changes made to a user’s account are immediately reflected in all linked applications.
+
+---

@@ -4,52 +4,23 @@ Here's a detailed feature comparison table outlining the differences between **I
 ---
 
 
+Here’s an expanded use case table outlining the **Objectives and Requirements**, **Cost**, **Risk**, **Feasibility**, **Performance and Scalability**, **Compliance and Regulatory**, **Integration and Interoperability**, **Sustainability**, and **User/Customer Impact** for implementing **Multi-Application Single Sign-On (SSO)** in the MES Portal using B2C.
 
-```powershell
+| **Category**                    | **Details**                                                                                                                                                                                                                                                                            |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Objective and Requirements**   | **Objective:** Implement a secure and seamless Single Sign-On (SSO) system for MES Portal users across multiple MES module applications.<br> **Requirements:** <ul><li>Enable a unified login experience using B2C as the Identity Service Manager.</li><li>Support multiple IdPs.</li><li>Ensure B2C can store and persist user information and tokens.</li><li>Provide mechanisms for portlet-specific authentication if needed.</li><li>Support MFA during initial login.</li></ul> |
+| **Cost**                         | <ul><li>**B2C Licensing Costs:** Based on user authentication events (can vary depending on volume of logins).</li><li>**Infrastructure Costs:** For scaling B2C, hosting MES portal, and integrating multiple MES modules with B2C.</li><li>**Development Costs:** For implementing the SSO logic, dashboard, and B2C integration.</li><li>**Ongoing Maintenance Costs:** Supporting SSO integration, periodic updates, and security audits.</li></ul>                     |
+| **Risk**                         | <ul><li>**Security Risks:** Improper configuration may lead to unauthorized access to multiple applications if SSO tokens are compromised.</li><li>**Operational Risks:** Service disruptions may prevent users from accessing all applications via SSO if B2C or IdPs fail.</li><li>**Regulatory Risks:** Non-compliance with industry standards (HIPAA, GDPR) can lead to penalties.</li></ul>                                                                                                                                                            |
+| **Feasibility**                  | <ul><li>**Technical Feasibility:** High. Azure B2C provides robust capabilities for integrating multiple applications with SSO.</li><li>**Organizational Feasibility:** Requires collaboration across teams to configure each MES application for SSO.</li><li>**Complexity:** Moderate, depending on the number of IdPs and module applications involved.</li></ul>                                                                                              |
+| **Performance and Scalability**  | <ul><li>**Performance:** Azure B2C ensures high availability and redundancy, allowing for minimal latency during authentication.</li><li>**Scalability:** B2C is designed to handle large numbers of users and applications. The architecture can scale dynamically based on traffic demands.</li><li>**Challenges:** Ensure performance remains optimal during peak login times.</li></ul>                                           |
+| **Compliance and Regulatory**    | <ul><li>**GDPR Compliance:** Ensure that user data and credentials are managed according to GDPR data protection standards, with consent management and the ability to delete user data when requested.</li><li>**HIPAA Compliance:** For health-related data, implement stringent authentication and encryption policies to meet HIPAA guidelines.</li><li>**Audit Requirements:** Ensure logging and auditing are in place to track all user activities and account modifications.</li></ul>                  |
+| **Integration and Interoperability** | <ul><li>**Integration with Multiple IdPs:** B2C must support multiple identity providers such as Medicaid IdP and MES module IdPs.</li><li>**Interoperability with Legacy Systems:** Ensure the SSO solution can integrate seamlessly with existing MES module applications without requiring major rework.</li><li>**API Integration:** Secure API integration is required between B2C, MES Portal, and MES module applications to handle token exchange and session validation.</li></ul>          |
+| **Sustainability**               | <ul><li>**Maintainability:** Regular updates to the B2C infrastructure will be required to ensure the SSO system remains secure and aligned with Azure B2C advancements.</li><li>**Monitoring and Management:** Continuous monitoring of the B2C service to identify potential bottlenecks and issues early.</li><li>**Upgradability:** The solution should be flexible enough to integrate new IdPs or additional modules in the future without major refactoring.</li></ul>       |
+| **User/Customer Impact**         | <ul><li>**Improved User Experience:** Single Sign-On reduces the need for multiple logins, improving convenience for users accessing multiple MES module applications.</li><li>**Consistency:** Users benefit from consistent authentication and security across all module applications, reducing login complexity and confusion.</li><li>**Increased Security:** MFA implementation ensures enhanced user security during login, reducing the risk of unauthorized access.</li></ul>                |
 
-While ($true) {
-    $minutes = ""
+### Summary of Use Case:
 
-    While ($minutes -eq "") {
-        $minutes = Read-Host "(minutes)"
-        If ($minutes -match "^\d+$") {
-            #Write-Host "number is good"
-        }
-        Else {
-            Write-Host "The input you provided is not valid. Please try again."
-            $minutes = ""
-        }
-    }
-
-    $myshell = New-Object -com "Wscript.Shell"
-
-    $i = 0
-
-    While ($i -lt $minutes -xor $minutes -eq 0) {
-        If ($minutes -eq "0") {
-            $minutes = -1
-            $i = -2
-            Write-Host ""
-        }
-        If ($minutes -gt "0") {
-            $minutesRemaining = $minutes - $i
-            If ($minutesRemaining -eq $minutes) {
-                Write-Host ""
-            }
-            If ($minutesRemaining -eq 1) {
-                Write-Host ""
-            }
-            If ($minutesRemaining -gt 1) {
-                Write-Host ""
-            }
-            $i++
-        }
-        Start-Sleep -Seconds 60
-        $myshell.sendkeys("{NUMLOCK}{NUMLOCK}")
-    }
-} #End of While true loop
-```
-
+This table outlines the key factors necessary for implementing a **Multi-Application SSO** solution with Azure B2C, ensuring compliance, performance, and scalability while considering both technical and user experience aspects. Each category represents an essential element that will impact the success and effectiveness of the SSO system.
 ### **Feature Comparison: ID.me vs. Alabama Medicaid IDP vs. Azure AD B2C**
 
 | **Feature**                         | **ID.me**                                           | **Alabama Medicaid IDP**                               | **Azure AD B2C**                                       |

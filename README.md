@@ -1,7 +1,6 @@
 
 
-Here’s a detailed breakdown of the **pros and cons** focusing on the **Category Implementation, Integration, Maintenance, and Customer Impact** for the scenario where users access the MES Portal using their existing credentials from MES module applications, with one-time challenges and federated login:
-
+### Table: Pros and Cons Option 1
 ### 1. **Implementation**
 
 | **Pros**                                                                                                                                               | **Cons**                                                                                                                                                         |
@@ -35,16 +34,6 @@ Here’s a detailed breakdown of the **pros and cons** focusing on the **Categor
 | - **Stronger Security**: MFA and the one-time challenge boost overall security, reassuring users that their information is well-protected.             | - **Varied User Experience**: Since authentication flows vary between modules, the user experience might not be consistent across the MES Portal.           |
 | - **Flexibility**: Users can still manage individual module credentials separately, giving them control over access to specific modules.               | - **Delays in Access**: Issues with the linking process or individual module IdPs could cause delays in user access to the portal or certain applications.   |
 
----
-
-### Summary:
-
-- **Implementation** benefits from using existing credentials but faces challenges with technical complexity and ensuring smooth user linking.
-- **Integration** allows for modular and scalable design but requires careful management of federated IdPs to avoid fragmentation and inconsistent experiences.
-- **Maintenance** is simplified at the portal level but could become fragmented due to decentralized authentication control, complicating troubleshooting.
-- **Customer Impact** is mostly positive, with a streamlined login experience, but inconsistent experiences and issues during the one-time challenge could confuse users.
-
-These pros and cons give a comprehensive view of the implementation, integration, maintenance, and customer impact aspects of using existing credentials and federated login for the MES Portal.
 
 
 ### Table: Analysis of Key Factors Option 1

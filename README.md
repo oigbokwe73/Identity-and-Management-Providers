@@ -1,5 +1,5 @@
 
-### Table: Pros and Cons Option 4
+### Table: Pros and Cons Option 5
 
 ### 1. **Implementation**
 
@@ -32,6 +32,43 @@
 | - **No Additional Signup Needed**: Users benefit from not needing to create new accounts, leading to faster access to the MES portal and less friction during the onboarding process. | - **Dependence on Medicaid for Account Issues**: Users might experience delays in resolving account issues if they need to rely on Medicaid’s support for password resets or other maintenance tasks. |
 | - **Consistent Experience**: Users will have a consistent login experience across all MES modules without needing to re-enter credentials, improving user satisfaction. | - **Single Point of Failure**: Any issues or outages with the Medicaid IdP could prevent users from accessing the MES portal, negatively impacting user experience. |
 | - **Improved Security**: Since all account maintenance and security policies (like MFA) are handled by Medicaid, users will benefit from the robust security practices of the Medicaid system. | - **Limited User Control**: Users may have limited control over certain aspects of their account management, like password resets or account recovery, as these processes are managed by Medicaid. |
+
+
+### Table: Pros and Cons Option 4
+
+### 1. **Implementation**
+
+| **Pros**                                                                                                                                                      | **Cons**                                                                                                                                                      |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Centralized Identity Management**: Implementing Entra ID allows all user data to be captured and managed in one place, reducing fragmentation.               | - **Initial Setup Costs**: Centralizing user data and connecting all MES module applications to Entra ID requires upfront costs in development and configuration. |
+| - **Simplified User Signup**: The MES Portal can capture all required data during signup, streamlining user onboarding into Entra ID.                           | - **Migration Complexity**: Migrating existing user accounts from disparate IdPs into a centralized Entra ID structure can be complex and time-consuming.      |
+| - **Unified Security Model**: A single identity provider means consistent application of security policies, including MFA and password management.               | - **Potential Data Integrity Issues**: During initial setup, ensuring data consistency and avoiding duplication or mismatch could pose a challenge.             |
+| - **Long-Term Scalability**: As Entra ID is designed to scale, the centralized management can easily accommodate growing user bases without needing reconfigurations. | - **Custom Development Needs**: Depending on the existing infrastructure, custom development might be required to integrate legacy MES modules with Entra ID.  |
+
+### 2. **Integration**
+
+| **Pros**                                                                                                                                                       | **Cons**                                                                                                                                                      |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Single Sign-On (SSO) Enablement**: Connecting all MES applications to Entra ID allows users to seamlessly access any module without needing to re-authenticate. | - **Legacy System Integration**: Integrating older MES applications with Entra ID as an IdP may require additional development or modifications to support SSO. |
+| - **Improved Data Consistency**: With all MES modules connected to Entra ID, user data remains consistent and synchronized across applications.                   | - **Increased Complexity for Custom Modules**: Custom or highly specialized MES modules might require additional integration effort to align with Entra ID protocols. |
+| - **Reduced Data Redundancy**: A single IdP eliminates the need to maintain user data across multiple identity providers, minimizing the risk of conflicting data. | - **Dependency on Entra ID**: The MES portal and applications will be highly dependent on Entra ID’s uptime and performance, making it a single point of failure. |
+
+### 3. **Maintenance**
+
+| **Pros**                                                                                                                                                     | **Cons**                                                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Centralized Account Management**: All account-related activities (e.g., password resets, role changes) are handled in Entra ID, reducing maintenance across multiple systems. | - **Maintenance Dependency**: Since account management is centralized at Entra ID, the MES portal team is reliant on Azure and Entra ID’s support and performance. |
+| - **Reduced Redundancy**: With all account maintenance consolidated in Entra ID, there's no need to maintain separate account systems or databases across various modules. | - **Potential Delays in Support**: Any issues with user account access will need to be resolved at Entra ID, potentially delaying resolutions depending on support resources. |
+| - **Automated User Updates**: Any changes to user roles or permissions in Entra ID are automatically reflected across all MES module applications, minimizing manual intervention. | - **Initial Migration Complexity**: Migrating existing accounts and maintaining accurate user roles during the initial setup may require additional attention and resources. |
+
+### 4. **Customer Impact**
+
+| **Pros**                                                                                                                                                        | **Cons**                                                                                                                                                         |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Seamless User Experience**: With SSO, users enjoy a frictionless experience, logging in once to access all MES module applications without repeated authentication. | - **Possible Downtime Issues**: If Entra ID experiences an outage or downtime, users will lose access to all MES module applications, creating potential frustration. |
+| - **Enhanced Security**: Centralized security policies (MFA, password expiration) enhance the overall security posture, providing users with confidence in their account protection. | - **Limited User Control**: Users may feel limited in control over account management functions if they rely solely on Entra ID, as certain changes may take longer to process. |
+| - **Simplified Account Management**: Users benefit from a single point for managing their credentials, making it easier to reset passwords or update security preferences. | - **Initial Confusion During Migration**: During the migration phase, users may experience confusion or access issues if roles or credentials are incorrectly migrated. |
+
 
 
 

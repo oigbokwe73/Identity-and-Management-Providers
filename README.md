@@ -1,5 +1,40 @@
 
 
+### Table: Pros and Cons Option 3
+
+### 1. **Implementation**
+
+| **Pros**                                                                                                                                                    | **Cons**                                                                                                                                                       |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Streamlined Identity Creation**: Automatically creating unique user accounts in Entra ID simplifies user management across both Medicaid and MES applications. | - **Initial Setup Complexity**: The process of setting up Entra ID to manage unique user accounts for each Medicaid user may require extensive configuration and testing. |
+| - **Consistent User Identity**: Each user gets a single identity in Entra ID, which can be reused across MES module applications, reducing redundancy and ensuring consistency. | - **Potential Duplication Risk**: If not handled correctly, there’s a risk of creating duplicate user accounts during the synchronization process.                |
+| - **Enhanced Security**: By centralizing user management in Entra ID, security policies such as MFA and conditional access can be uniformly applied to all users. | - **Time-Intensive**: Depending on the number of users, it could take a long time to create and manage the initial user accounts and ensure the mapping is correct. |
+
+### 2. **Integration**
+
+| **Pros**                                                                                                                                                    | **Cons**                                                                                                                                                       |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Seamless Data Sharing**: The system will automatically and securely pass user details to MES module applications, ensuring data consistency and accuracy.  | - **Complex Integration Logic**: Mapping Medicaid users’ data to multiple MES module applications requires careful planning to ensure accurate and secure data flow. |
+| - **SSO Integration**: Once integrated, users can leverage Single Sign-On (SSO) across MES applications without needing to re-enter credentials.              | - **Dependent on Synchronization**: The success of this integration relies heavily on the proper synchronization of user accounts between Medicaid and Entra ID. |
+| - **Unified Identity Management**: Centralizing the identity management in Entra ID simplifies the integration with other systems, reducing the overhead for future integrations. | - **Legacy System Adjustments**: Some legacy MES applications might require modifications to fully integrate with Entra ID, increasing costs and effort.         |
+
+### 3. **Maintenance**
+
+| **Pros**                                                                                                                                                    | **Cons**                                                                                                                                                       |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Simplified Maintenance**: By centralizing identity management in Entra ID, ongoing maintenance tasks like password resets and account updates are streamlined. | - **Continuous Monitoring Required**: Maintaining accurate synchronization between Medicaid, Entra ID, and MES applications requires continuous monitoring.     |
+| - **Automated User Updates**: Any updates to a user’s Medicaid account or their role can automatically flow through Entra ID to MES module applications, reducing manual interventions. | - **Sync Issues Can Cause Access Problems**: If the synchronization between Entra ID and MES applications fails, users may experience issues accessing critical applications. |
+| - **Reduced Redundancy**: Having a single account per user means less redundant data and fewer chances for inconsistencies across MES modules.                 | - **Troubleshooting Complexity**: If issues arise with account linking or synchronization, troubleshooting could be more complex across multiple systems.        |
+
+### 4. **Customer Impact**
+
+| **Pros**                                                                                                                                                     | **Cons**                                                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Enhanced User Experience**: Users benefit from a seamless login experience across all MES module applications through SSO, reducing the number of logins needed. | - **Potential Delays for New Users**: If there are delays in creating user accounts or synchronizing data, users might face delays in accessing MES applications. |
+| - **Consistent User Data**: Users experience consistent data across all applications, reducing confusion caused by mismatched or outdated information.          | - **Account Setup Complexity for Users**: While most processes are automated, any initial issues with linking Medicaid accounts could frustrate users.          |
+| - **Increased Security**: Centralized security measures like MFA and conditional access policies enhance user security, boosting trust in the system.            | - **Access Issues Could Cause Frustration**: If there are issues with the synchronization or user mapping, customers may face access problems, leading to frustration. |
+
+
 ### Table: Pros and Cons Option 2
 
 ### 1. **Implementation**

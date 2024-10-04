@@ -1,5 +1,49 @@
 
 
+### Table: Pros and Cons Option 2
+
+### 1. **Implementation**
+
+| **Pros**                                                                                                                                                     | **Cons**                                                                                                                                                     |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Streamlined Setup**: AD sync between Medicaid and Entra ID ensures user data is pre-loaded, reducing friction during the go-live phase.                   | - **Complex Initial Configuration**: Establishing the AD sync between Medicaid and Entra ID can be complex, requiring thorough planning and testing.          |
+| - **Time-Saving**: Data is ready ahead of time, so users don’t need to complete one-time challenges for linking, saving significant time during implementation. | - **Initial Development Cost**: The development and configuration of AD synchronization and mapping processes will incur upfront costs, including testing and validation. |
+| - **Avoids User Linking Issues**: By performing the data extraction and mapping during initial setup, the system minimizes potential errors in user identity linkage. | - **Potential for Data Mismatch**: Inaccurate or incomplete data mapping during the initial phase may cause issues that are harder to resolve later.           |
+
+### 2. **Integration**
+
+| **Pros**                                                                                                                                                     | **Cons**                                                                                                                                                     |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Seamless Integration**: AD sync ensures that Medicaid user data is automatically available in Entra ID, enabling seamless integration across MES modules.   | - **Legacy System Compatibility**: Depending on Medicaid’s AD structure, some legacy components may require additional configuration for full compatibility with Entra ID. |
+| - **Consistent Data Management**: By syncing AD data, all user attributes, roles, and permissions are consistently propagated across all integrated systems.    | - **Dependency on Medicaid Systems**: The success of the integration depends on Medicaid's ability to sync data correctly with Entra ID. Any delays could impact portal access. |
+
+### 3. **Maintenance**
+
+| **Pros**                                                                                                                                                     | **Cons**                                                                                                                                                     |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Reduced Ongoing Effort**: Once AD sync is set up, maintenance is reduced, as data automatically flows from Medicaid to Entra ID without manual intervention. | - **Ongoing Sync Monitoring**: Continuous monitoring of the synchronization process is required to ensure data consistency and accuracy over time.            |
+| - **Automated Updates**: Future changes in Medicaid user data (e.g., role changes or new users) are automatically reflected in Entra ID, reducing manual updates. | - **Risk of Sync Failures**: Any failure in the AD sync could lead to discrepancies in user data, resulting in incorrect user access permissions.            |
+| - **Fewer Access Issues**: Automated data mapping reduces the likelihood of access issues due to missing or incorrect user identity links.                      | - **Complex Debugging**: If sync issues arise, debugging and resolving them could be complex, especially if there are many systems interacting with Entra ID. |
+
+### 4. **Customer Impact**
+
+| **Pros**                                                                                                                                                         | **Cons**                                                                                                                                                         |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Smooth User Experience**: Users avoid having to complete the one-time challenge for linking their accounts, making access to the MES Portal seamless.           | - **No Control Over Initial Data**: Users may not have visibility or control over how their data is mapped, leading to potential frustrations if errors occur.   |
+| - **Immediate Access**: With pre-synced data, users can immediately access the MES Portal and integrated applications without additional authentication steps.       | - **Potential Confusion with Data Mapping**: If there are issues with how the data was mapped, users could face confusion or restricted access to certain modules. |
+| - **Consistent Login Experience**: Users get a unified experience across all MES module applications without the need for additional re-authentication.              | - **User Delays if Sync Fails**: In case of a failure or delay in the AD sync, users may face issues accessing their accounts or the portal until the issue is resolved. |
+
+---
+
+### Summary:
+
+- **Implementation**: The upfront effort in AD sync and data extraction/mapping simplifies long-term operations by reducing manual user linking. However, it requires meticulous planning and configuration to avoid future data inconsistencies.
+- **Integration**: AD sync ensures seamless integration between Medicaid and Entra ID, offering a smooth user experience across modules, though it depends heavily on Medicaid’s systems being compatible and timely synced.
+- **Maintenance**: Once established, the sync and mapping processes reduce maintenance by automating data flow between systems. However, any sync failures will require significant monitoring and troubleshooting to ensure data accuracy.
+- **Customer Impact**: Users benefit from seamless access and an efficient onboarding process, but issues with data mapping or sync failures could lead to temporary frustrations and restricted access to modules.
+
+These pros and cons provide a comprehensive look at the technical and user-facing aspects of setting up AD sync and data extraction/mapping during the initial phase of integrating Medicaid with Entra ID.
+
 ### Table: Pros and Cons Option 1
 ### 1. **Implementation**
 

@@ -1,4 +1,39 @@
 
+### Table: Pros and Cons Option 4
+
+### 1. **Implementation**
+
+| **Pros**                                                                                                                                                     | **Cons**                                                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **No Need for New Signups**: By leveraging existing Medicaid accounts, there’s no need for users to go through a new signup process, saving time and effort. | - **Initial Setup Complexity**: Adjusting the MES portal to work with Medicaid's existing account system could require initial adjustments and development work. |
+| - **Reduced Complexity**: Fewer user management components are required during the implementation, simplifying the system’s design and reducing development effort. | - **Potential Data Mapping Issues**: Mapping existing Medicaid accounts to the MES system must be handled carefully to avoid any misalignment or access issues.  |
+| - **Cost Savings**: Implementing a single IdP avoids the need for multiple infrastructure setups for user account management, reducing costs.                  | - **Dependency on Medicaid Systems**: The MES portal’s functionality becomes dependent on the availability and proper functioning of Medicaid's IdP systems.     |
+
+### 2. **Integration**
+
+| **Pros**                                                                                                                                                       | **Cons**                                                                                                                                                       |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Seamless User Experience**: By integrating a single IdP (Medicaid), the system ensures that users don’t need to re-authenticate across multiple MES modules. | - **Limited Flexibility**: Relying on Medicaid as the sole IdP might limit the MES portal’s ability to integrate with other potential identity management systems or external services. |
+| - **Reduced Redundancy**: Using a single IdP avoids data duplication and redundancy, ensuring that all user data is managed in one place.                        | - **Increased Integration Effort**: Since each MES module must be integrated with Medicaid’s IdP, it might require extra time and effort to ensure compatibility across all applications. |
+| - **Consistent Security Controls**: Having a single IdP ensures that security policies, such as MFA and conditional access, are uniformly applied across all applications. | - **Legacy Systems Compatibility**: Some MES modules, especially older systems, may need adjustments to support integration with the Medicaid IdP.               |
+
+### 3. **Maintenance**
+
+| **Pros**                                                                                                                                                     | **Cons**                                                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **Centralized Maintenance**: All account-related maintenance tasks (e.g., password resets, role updates) are handled by Medicaid, reducing the overhead for the MES portal. | - **Single Point of Failure**: Since all user account activities are handled by Medicaid, any downtime or failure in the Medicaid IdP could affect the MES portal’s user access. |
+| - **Simplified System Maintenance**: The MES portal doesn’t need to manage account credentials, reducing the need for managing multiple user directories or maintaining redundant databases. | - **Limited Control Over User Management**: Since Medicaid is responsible for all account maintenance, the MES team may have limited control or visibility into user-specific issues. |
+| - **Reduced Long-Term Costs**: Centralized account maintenance at Medicaid reduces the operational costs of managing and updating multiple user directories across MES modules. | - **Dependency on Medicaid’s Support**: The MES portal will be dependent on Medicaid’s support teams for resolving user access issues or performing user maintenance activities. |
+
+### 4. **Customer Impact**
+
+| **Pros**                                                                                                                                                       | **Cons**                                                                                                                                                       |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| - **No Additional Signup Needed**: Users benefit from not needing to create new accounts, leading to faster access to the MES portal and less friction during the onboarding process. | - **Dependence on Medicaid for Account Issues**: Users might experience delays in resolving account issues if they need to rely on Medicaid’s support for password resets or other maintenance tasks. |
+| - **Consistent Experience**: Users will have a consistent login experience across all MES modules without needing to re-enter credentials, improving user satisfaction. | - **Single Point of Failure**: Any issues or outages with the Medicaid IdP could prevent users from accessing the MES portal, negatively impacting user experience. |
+| - **Improved Security**: Since all account maintenance and security policies (like MFA) are handled by Medicaid, users will benefit from the robust security practices of the Medicaid system. | - **Limited User Control**: Users may have limited control over certain aspects of their account management, like password resets or account recovery, as these processes are managed by Medicaid. |
+
+
 
 ### Table: Pros and Cons Option 3
 
